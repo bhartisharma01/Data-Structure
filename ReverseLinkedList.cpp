@@ -30,6 +30,6 @@ public:
         return newHead;
     }
 };
-
+// for both methods
 // Time complexity : O(N)
 // Space complexity : O(1)
