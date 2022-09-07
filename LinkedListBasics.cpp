@@ -64,11 +64,11 @@ void insertAtPosition(Node *&tail, Node *&head, int pos, int data)
     temp->next = nodeToInsert;
 }
 
-void deleteNode(int position, Node *&head)
+void deleteNode(int position, Node *&head, Node *&tail)
 {
     Node *prev = head;
     Node *curr = head;
-    int cnt = 1;
+    //  deleting head node
     if (position == 1)
     {
         Node *temp = head;
@@ -76,10 +76,12 @@ void deleteNode(int position, Node *&head)
         temp->next = NULL;
         delete temp;
     }
+    // deleting at particular position node
     else
     {
         Node *curr = head;
         Node *prev = NULL;
+        // Node *tail = head;
         int cnt = 1;
         while (cnt < position)
         {
@@ -88,8 +90,15 @@ void deleteNode(int position, Node *&head)
             cnt++;
         }
         prev->next = curr->next;
-        curr -> next = NULL;
+        // remove deleted node's pointer from the linked list's data
+        curr->next = NULL;
         delete curr;
+        // for updating tail pointer
+        while (prev->next != NULL)
+        {
+            prev = prev->next;
+            tail = prev;
+        }
     }
 }
 void printLinkedList(Node *&head)
@@ -121,8 +130,10 @@ int main()
     cout << "Inserting at particular position" << endl;
     insertAtPosition(tail, head, 6, 22);
     printLinkedList(head);
-    cout<<endl;
-    deleteNode(4, head);
+    cout << endl;
+    deleteNode(6, head, tail);
+    cout << "head at " << head->data << endl;
+    cout << "tail at " << tail->data << endl;
     printLinkedList(head);
     return 0;
 }
