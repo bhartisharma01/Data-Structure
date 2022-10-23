@@ -37,7 +37,7 @@ bool isPalindrome(ListNode *head)
             return false;
         dummy = dummy->next;
         slow = slow->next;
-    }
+    } 
     return true;
 }
 }
